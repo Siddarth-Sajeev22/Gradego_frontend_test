@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import './login.css'
-import signin from './signin.svg'
-import signup from './signup.svg'
+import faculty from './faculty.png'
+import student from './student.svg'
+import { faUser,faLock } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function Login() {
     
@@ -31,11 +33,11 @@ function Login() {
             <form action="" class="sign-in-form">
                 <h2 class="title">STUDENT LOGIN</h2>
                 <div class="input-field">
-                    <i class="fas fa-user"></i>
+                    <FontAwesomeIcon icon={faUser} />
                     <input type="text" placeholder="Username" />
                 </div>
                 <div class="input-field">
-                    <i class="fas fa-lock"></i>
+                    <FontAwesomeIcon icon={faLock} />
                     <input type="password" placeholder="Password" />
                 </div>
                 <input type="submit" value="Login" class="btn" />
@@ -45,11 +47,11 @@ function Login() {
             <form action="" class="sign-up-form">
                 <h2 class="title">FACULTY LOGIN</h2>
                 <div class="input-field">
-                    <i class="fas fa-user"></i>
+                <FontAwesomeIcon icon={faUser} />
                     <input type="text" placeholder="Username" />
                 </div>
                 <div class="input-field">
-                    <i class="fas fa-lock"></i>
+                <FontAwesomeIcon icon={faLock} />
                     <input type="password" placeholder="Password" />
                 </div>
                 <input type="submit" value="Login" class="btn" />
@@ -66,7 +68,7 @@ function Login() {
                     <p>Click here to continue to student login</p>
                     <button class="btn" id="sign-in-btn" onClick={handleSignInClick}>Student</button>
                 </div>
-                <img src={signin} alt="" class="image left" />
+                <img src={student} alt="" class="image left" />
             </div>
             <div class="panel right-panel">
                 <div class="content">
@@ -74,7 +76,7 @@ function Login() {
                     <p>Click here to continue to faculty login</p>
                     <button class="btn" id="sign-up-btn" onClick={handleSignUpClick}>Faculty</button>
                 </div>
-                <img src={signup} alt="" class="image right" />
+                <img src={faculty} alt="" class="image right" />
             </div>
         </div>
     </div>

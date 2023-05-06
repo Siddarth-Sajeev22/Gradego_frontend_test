@@ -1,6 +1,6 @@
 * {
-    margin: 0;
-    padding: 0;
+    margin: 3px;
+    padding: 6px;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
@@ -197,7 +197,8 @@ a {
 }
 .right{
     padding-top: 25px;
-    width : 120%;
+    width : 80%;
+    /* background: transparent; */
 }
 
 .left{
