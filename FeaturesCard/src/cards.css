@@ -1,0 +1,88 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+  
+  .card {
+    width: 320px;
+    height: 280px;
+    background: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+    overflow: hidden;
+    background-image: url('flowers-276014__340.jpg');
+    position: relative;
+  }
+  
+  .card:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-image: url('flowers-276014__340.jpg'); */
+    /* background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #fff 100%); */
+  }
+  
+  .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .card:hover img {
+    transform: scale(1.2);
+  }
+  
+  .card-content {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    transform: translateY(0%);
+    transition: transform 0.5s ease;
+  }
+  
+  .card:hover .card-content {
+    transform: translateY(0%);
+  }
+  
+  .card-title {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .card-description {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s ease;
+  }
+  
+  .card:hover .card-description {
+    height: 60px;
+  }
+
+  .card:hover {
+    border: 1px solid #000000;
+  }
+  .card:hover .card-content {
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  .card:hover .card-title {
+    color: #000000;
+  }
