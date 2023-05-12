@@ -1,89 +1,107 @@
-import React, { useState } from 'react'
-import './login.css'
-import faculty from './faculty.png'
-import student from './student.svg'
-import { faUser,faLock } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Helmet } from 'react-helmet-async';
+// @mui
+import { styled } from '@mui/material/styles';
+import { Link, Container, Typography, Divider, Stack, Button } from '@mui/material';
+// hooks
+import useResponsive from '../hooks/useResponsive';
+// components
+import Logo from '../components/logo';
+import Iconify from '../components/iconify';
+// sections
+import { LoginForm } from '../sections/auth/login';
 
-function Login() {
-    
+// ----------------------------------------------------------------------
 
-    const [isSignUpMode, setIsSignUpMode] = useState(false);
-    const [isSignUpMode2, setIsSignUpMode2] = useState(false);
+const StyledRoot = styled('div')(({ theme }) => ({
+    [theme.breakpoints.up('md')]: {
+        display: 'flex',
+    },
+}));
 
-    const handleSignUpClick = () => {
-        setIsSignUpMode(true);
-    };
+const StyledSection = styled('div')(({ theme }) => ({
+    width: '100%',
+    maxWidth: 480,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    boxShadow: theme.customShadows.card,
+    backgroundColor: theme.palette.background.default,
+}));
 
-    const handleSignInClick = () => {
-        setIsSignUpMode(false);
-    };
+const StyledContent = styled('div')(({ theme }) => ({
+    maxWidth: 480,
+    margin: 'auto',
+    minHeight: '100vh',
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    padding: theme.spacing(12, 0),
+}));
 
-    const handleSignUpClick2 = () => {
-        setIsSignUpMode2(true);
-    };
+// ----------------------------------------------------------------------
 
-    const handleSignInClick2 = () => {
-        setIsSignUpMode2(false);
-    };
+export default function LoginPage() {
+    const mdUp = useResponsive('up', 'md');
 
     return (
-        <div className={`container ${isSignUpMode ? "sign-up-mode" : ""} ${isSignUpMode2 ? "sign-up-mode2" : ""}`}>
-        <div class="signin-signup">
-            <form action="" class="sign-in-form">
-                <h2 class="title">STUDENT LOGIN</h2>
-                <div class="input-field">
-                    <FontAwesomeIcon icon={faUser} />
-                    <input type="text" placeholder="Username" />
-                </div>
-                <div class="input-field">
-                    <FontAwesomeIcon icon={faLock} />
-                    <input type="password" placeholder="Password" />
-                </div>
-                <input type="submit" value="Login" class="btn" />
-                <p class="social-text">Forgot Password ?</p>
-                <p class="account-text">Don't have an account? <a href="#" id="sign-up-btn2" onClick={handleSignUpClick2}>Sign up</a></p>
-            </form>
-            <form action="" class="sign-up-form">
-                <h2 class="title">FACULTY LOGIN</h2>
-                <div class="input-field">
-                <FontAwesomeIcon icon={faUser} />
-                    <input type="text" placeholder="Username" />
-                </div>
-                <div class="input-field">
-                <FontAwesomeIcon icon={faLock} />
-                    <input type="password" placeholder="Password" />
-                </div>
-                <input type="submit" value="Login" class="btn" />
-                <p class="social-text">Forgot Password ?</p>
-                
-                
-                <p class="account-text">Already have an account? <a href="#" id="sign-in-btn2" onClick={handleSignInClick2}>Sign in</a></p>
-            </form>
-        </div>
-        <div class="panels-container">
-            <div class="panel left-panel">
-                <div class="content">
-                    <h3>Are you a student ?</h3>
-                    <p>Click here to continue to student login</p>
-                    <button class="btn" id="sign-in-btn" onClick={handleSignInClick}>Student</button>
-                </div>
-                <img src={student} alt="" class="image left" />
-            </div>
-            <div class="panel right-panel">
-                <div class="content">
-                    <h3>Are you a faculty member ?</h3>
-                    <p>Click here to continue to faculty login</p>
-                    <button class="btn" id="sign-up-btn" onClick={handleSignUpClick}>Faculty</button>
-                </div>
-                <img src={faculty} alt="" class="image right" />
-            </div>
-        </div>
-    </div>
+        <>
+            <Helmet>
+                <title> Login | Minimal UI </title>
+            </Helmet>
 
+            <StyledRoot>
+                <Logo
+                    sx={{
+                        position: 'fixed',
+                        top: { xs: 16, sm: 24, md: 40 },
+                        left: { xs: 16, sm: 24, md: 40 },
+                    }}
+                />
+
+                {mdUp && (
+                    <StyledSection>
+                        <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
+                            Hi, Welcome Back
+                        </Typography>
+                        <img src="/assets/illustrations/illustration_login.png" alt="login" />
+                    </StyledSection>
+                )}
+
+                <Container maxWidth="sm">
+                    <StyledContent>
+                        <Typography variant="h4" gutterBottom>
+                            Sign in to Minimal
+                        </Typography>
+
+                        <Typography variant="body2" sx={{ mb: 5 }}>
+                            Don’t have an account? {''}
+                            <Link variant="subtitle2">Get started</Link>
+                        </Typography>
+
+                        <Stack direction="row" spacing={2}>
+                            <Button fullWidth size="large" color="inherit" variant="outlined">
+                                <Iconify icon="eva:google-fill" color="#DF3E30" width={22} height={22} />
+                            </Button>
+
+                            <Button fullWidth size="large" color="inherit" variant="outlined">
+                                <Iconify icon="eva:facebook-fill" color="#1877F2" width={22} height={22} />
+                            </Button>
+
+                            <Button fullWidth size="large" color="inherit" variant="outlined">
+                                <Iconify icon="eva:twitter-fill" color="#1C9CEA" width={22} height={22} />
+                            </Button>
+                        </Stack>
+
+                        <Divider sx={{ my: 3 }}>
+                            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                OR
+                            </Typography>
+                        </Divider>
+
+                        <LoginForm />
+                    </StyledContent>
+                </Container>
+            </StyledRoot>
+        </>
     );
-
 }
-
-
-export default Login;
